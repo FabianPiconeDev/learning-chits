@@ -1,4 +1,4 @@
-Learning chits application
+Learning chits - CommandBus & EventSourcing
 ==============
 
 Implementing
