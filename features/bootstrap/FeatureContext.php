@@ -4,12 +4,15 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use League\Tactician\CommandBus;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext implements Context
 {
+    private $commandBus;
+
     /**
      * Initializes context.
      *
@@ -17,8 +20,9 @@ class FeatureContext implements Context
      * You can also pass arbitrary arguments to the
      * context constructor through behat.yml.
      */
-    public function __construct()
+    public function __construct(Commandbus $commandBus)
     {
+        $this->commandBus = $commandBus;
     }
 
     /**
