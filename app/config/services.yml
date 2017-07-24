@@ -44,3 +44,27 @@ services:
         public: true # temporary. See https://github.com/thephpleague/tactician-bundle Symfony 3.3+
         tags:
             - { name: tactician.handler, command: FabianPiconeDev\Domain\Command\InsertChitCommand }
+
+    Prooph\EventStore\ActionEventEmitterEventStore:
+        public: true
+        autowire: true
+        arguments:
+          - '@Prooph\EventStore\Pdo\MySqlEventStore'
+
+    Prooph\EventStore\Pdo\MySqlEventStore:
+        autowire: true
+        arguments:
+            - '@Prooph\Common\Messaging\FQCNMessageFactory'
+            - '@PDO'
+
+    Prooph\EventStore\Pdo\PersistenceStrategy\MySqlAggregateStreamStrategy:
+    Prooph\Common\Event\ProophActionEventEmitter:
+    Prooph\Common\Messaging\FQCNMessageFactory:
+
+    PDO:
+        class: PDO
+        arguments:
+          - 'mysql:dbname=%database_name%;host=%database_host%'
+          - '%database_user%'
+          - '%database_password%'
+          - []

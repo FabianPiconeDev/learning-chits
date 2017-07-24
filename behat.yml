@@ -4,5 +4,6 @@ default:
             contexts:
                 - FeatureContext:
                     commandBus:   '@tactician.commandbus'
+                    eventStore:   '@Prooph\EventStore\ActionEventEmitterEventStore'
     extensions:
         Behat\Symfony2Extension: ~
