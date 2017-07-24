@@ -67,3 +67,11 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+tactician:
+    commandbus:
+        default:
+            middleware:
+                # service ids for all your middlewares, top down. First in, first out.
+                - tactician.middleware.locking
+                - tactician.middleware.command_handler
