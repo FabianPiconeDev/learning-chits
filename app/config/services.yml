@@ -34,8 +34,13 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
-  fab_pic_dev.application.command_handler.inset_chit_handler:
-      class: FabianPiconeDev\Application\CommandHandler\InsertChitHandler
-      public: true # temporary. See https://github.com/thephpleague/tactician-bundle Symfony 3.3+
-      tags:
-          - { name: tactician.handler, command: FabianPiconeDev\Domain\Command\InsertChitCommand }
+    FabianPiconeDev\Web\Controller\:
+        resource: '../../src/Web/Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
+    fab_pic_dev.application.command_handler.inset_chit_handler:
+        class: FabianPiconeDev\Application\CommandHandler\InsertChitHandler
+        public: true # temporary. See https://github.com/thephpleague/tactician-bundle Symfony 3.3+
+        tags:
+            - { name: tactician.handler, command: FabianPiconeDev\Domain\Command\InsertChitCommand }

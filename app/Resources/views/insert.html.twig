@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form>
+        <div class="form-group">
+            <label for="question">Question</label>
+            <textarea class="form-control" id="question"></textarea>
+
+            <label for="answer">Answer</label>
+            <textarea class="form-control" id="answer"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+{% endblock %}
