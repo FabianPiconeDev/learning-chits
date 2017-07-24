@@ -5,6 +5,7 @@ use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use League\Tactician\CommandBus;
+use FabianPiconeDev\Domain\Command\InsertChitCommand;
 
 /**
  * Defines application features from the specific context.
@@ -53,14 +54,6 @@ class FeatureContext implements Context
      * @Then the chit state must become :arg1
      */
     public function theChitStateMustBecome($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When user :arg1 a chit
-     */
-    public function userAChit($arg1)
     {
         throw new PendingException();
     }
@@ -175,5 +168,13 @@ class FeatureContext implements Context
     public function chitIsShown2()
     {
         throw new PendingException();
+    }
+
+    /**
+     * @When user inserts a chit
+     */
+    public function userInsertsAChit()
+    {
+        $this->commandBus->handle(new InsertChitCommand);
     }
 }
