@@ -57,7 +57,7 @@ services:
             - '@Prooph\Common\Messaging\FQCNMessageFactory'
             - '@PDO'
 
-    Prooph\EventStore\Pdo\PersistenceStrategy\MySqlAggregateStreamStrategy:
+    Prooph\EventStore\Pdo\PersistenceStrategy\MySqlSingleStreamStrategy:
     Prooph\Common\Event\ProophActionEventEmitter:
     Prooph\Common\Messaging\FQCNMessageFactory:
 

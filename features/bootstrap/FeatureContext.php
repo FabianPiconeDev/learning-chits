@@ -7,6 +7,9 @@ use Behat\Gherkin\Node\TableNode;
 use League\Tactician\CommandBus;
 use FabianPiconeDev\Domain\Command\InsertChitCommand;
 use Prooph\EventStore\EventStore;
+use Prooph\EventStore\StreamName;
+use Prooph\EventStore\Stream;
+use FabianPiconeDev\Domain;
 
 /**
  * Defines application features from the specific context.
@@ -15,6 +18,7 @@ class FeatureContext implements Context
 {
     private $commandBus;
     private $eventStore;
+    private $streamName;
 
     /**
      * Initializes context.
@@ -27,6 +31,8 @@ class FeatureContext implements Context
     {
         $this->commandBus = $commandBus;
         $this->eventStore = $eventStore;
+        $this->streamName = new StreamName('event_stream');
+//        $this->eventStore->create(new Stream($this->streamName, new ArrayIterator())); // Only the first time
     }
 
     /**
@@ -67,6 +73,8 @@ class FeatureContext implements Context
     public function theChitMustBeStoredInTheDatabse()
     {
         throw new PendingException();
+
+
     }
 
     /**
@@ -178,6 +186,12 @@ class FeatureContext implements Context
      */
     public function userInsertsAChit()
     {
-        $this->commandBus->handle(new InsertChitCommand);
+        $this->eventStore->appendTo($this->streamName, new ArrayIterator([
+            Domain\DomainEvent\ChitWasInserted::fromQuestionAndAnswer(
+                Domain\Question::new('question'),
+                Domain\Answer::new('answer')
+            )
+        ]));
     }
+
 }
