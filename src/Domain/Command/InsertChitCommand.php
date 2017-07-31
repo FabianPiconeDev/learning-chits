@@ -4,8 +4,27 @@ namespace FabianPiconeDev\Domain\Command;
 
 final class InsertChitCommand
 {
-    public function metadata(): array
+    private $question;
+    private $answer;
+
+    private function __construct(string $question, string $answer)
     {
-        return [];
+        $this->question = $question;
+        $this->answer = $answer;
+    }
+
+    public static function fromQuestionAndAnswer(string $question, string $answer): self
+    {
+        return new self($question, $answer);
+    }
+
+    public function getQuestion(): string
+    {
+        return $this->question;
+    }
+
+    public function getAnswer(): string
+    {
+        return $this->answer;
     }
 }

@@ -186,13 +186,10 @@ class FeatureContext implements Context
      */
     public function userInsertsAChit()
     {
-        $chitWasInserted = Domain\DomainEvent\ChitWasInserted::fromQuestionAndAnswer(
-            Domain\Question::new('What stands PHP for?'),
-            Domain\Answer::new('Hypertext Preprocessor')
-        );
-        $this->eventStore->appendTo($this->streamName, new ArrayIterator([
-            $chitWasInserted
-        ]));
+        $this->commandBus->handle(InsertChitCommand::fromQuestionAndAnswer(
+            'What stands PHP for?',
+            'Hypertext Preprocessor'
+        ));
     }
 
 }

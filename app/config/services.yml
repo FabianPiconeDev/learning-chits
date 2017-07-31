@@ -51,7 +51,11 @@ services:
         arguments:
           - '@Prooph\EventStore\Pdo\MySqlEventStore'
 
+    Prooph\EventStore\EventStore:
+        alias: Prooph\EventStore\Pdo\MySqlEventStore
+
     Prooph\EventStore\Pdo\MySqlEventStore:
+        alias:
         autowire: true
         arguments:
             - '@Prooph\Common\Messaging\FQCNMessageFactory'
