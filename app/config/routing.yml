@@ -1,3 +1,11 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+routing.insert:
+    path:      /insert
+    defaults:  { _controller: 'FabianPiconeDev\Web\Controller\ChitInsertionController:showInsertForm' }
+
+routing.insert.submit:
+    path:      /insert-submit
+    defaults:  { _controller: 'FabianPiconeDev\Web\Controller\ChitInsertionController:submitInsertForm' }

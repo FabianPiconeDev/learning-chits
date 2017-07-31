@@ -8,6 +8,5 @@ Feature: Insert chit
 
   Scenario: Insert an incomplete chit
     When user inserts a chit
-    And the question is missing
-    or the answer is missing
+    And the question is missing or the answer is missing
     Then the chit must not be stored in the databse
